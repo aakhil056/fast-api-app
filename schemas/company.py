@@ -2,14 +2,18 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-class Company(BaseModel):
+class CompanyBase(BaseModel):
     name: str
     address: Optional[str] = None
     email: str
     phone_number: str
 
 
-class CompanyCreate(Company):
+class Company(CompanyBase):
+    pass
+
+
+class CompanyCreate(CompanyBase):
     pass
 
 
@@ -20,7 +24,7 @@ class CompanyUpdate(BaseModel):
     phone_number: Optional[str] = None
 
 
-class CompanyResponse(Company):
+class CompanyResponse(CompanyBase):
     id: int
 
     class Config:

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from routers import company, job
 from database import Base, engine
@@ -14,9 +15,17 @@ app = FastAPI(
 
 print("engine is :", engine)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Try to create tables, but don't fail if database doesn't exist
 try:
-    Base.metadata.create_all(bind=engine)
+    # Base.metadata.create_all(bind=engine)
     print("✓ Database tables created/verified successfully")
 except Exception as e:
     print(f"⚠ Warning: Could not create database tables: {e}")
