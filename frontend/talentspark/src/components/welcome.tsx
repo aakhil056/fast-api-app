@@ -1,18 +1,30 @@
-import {useState} from 'react';
+import type { FC } from "react";
 
-function counter(){
-    const [count, setCount] = useState(0);
-    const increment = () => {
-        setCount(count + 1);
-    }
+type WelcomeProps = {
+  currentTime: Date;
+};
 
-    return (
-        <div>
-            <h1>Counter: {count}</h1>
-            <button onClick={increment}>Increment</button>
+const Welcome: FC<WelcomeProps> = ({ currentTime }) => {
+
+  return (
+    <section className="hero-block">
+      <div>
+        <p className="subtitle">Real-time status</p>
+        <h1>Live time and date</h1>
+      </div>
+      <div className="time-blocks">
+        <div className="time-card">
+          <span>Current date</span>
+          <strong>{currentTime.toLocaleDateString()}</strong>
         </div>
-    );
+        <div className="time-card">
+          <span>Current time</span>
+          <strong>{currentTime.toLocaleTimeString()}</strong>
+        </div>
+      </div>
+    </section>
+  );
 
 }
 
-export default counter;
+export default Welcome;

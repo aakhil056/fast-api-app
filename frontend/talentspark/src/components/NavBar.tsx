@@ -1,13 +1,14 @@
 function NavBar() {
-    return (
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </nav>
-    );
+  return (
+    <nav className="site-nav">
+      <div className="nav-brand">TalentSpark</div>
+      <ul className="nav-links">
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#companies">Companies</a></li>
+        <li><a href="#jobs">Jobs</a></li>
+      </ul>
+    </nav>
+  );
 }
 
 export default NavBar;
